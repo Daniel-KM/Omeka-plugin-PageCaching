@@ -438,7 +438,7 @@ class PageCaching_PageCacher
 
                 // Get the any new urls to blacklist from the plugins
                 $pluginsBlacklistToAdd = array();
-                $pluginsBlacklistToAdd = apply_filters('page_caching_blacklist_for_record', $pluginsBlacklistToAdd, array('record' => $record), $action);
+                $pluginsBlacklistToAdd = apply_filters('page_caching_blacklist_for_record', $pluginsBlacklistToAdd, array('record' => $record, 'action' => $action));
 
                 // If the plugins added new urls to plugins blacklist,
                 // then override the old ones and set the new plugins blacklist
