@@ -73,8 +73,9 @@ define('PAGE_CACHING_CACHE_DIR_PATH', PAGE_CACHING_PLUGIN_DIR . 'cache' . DIRECT
     /**
      * Shows plugin configuration page.
      */
-    public function hookConfigForm()
+    public function hookConfigForm($args)
     {
+        $view = $args['view'];
         $pageCacher = page_caching_get_page_cacher();
         $form = $pageCacher->buildConfigForm();
         echo $form->render();
