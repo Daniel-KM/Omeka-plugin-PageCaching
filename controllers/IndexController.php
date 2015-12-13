@@ -8,7 +8,8 @@ class PageCaching_IndexController extends Omeka_Controller_AbstractActionControl
 {
     public function clearCacheAction()
     {
-        if ($pageCacher = Zend_Registry::get('page_cacher')) {
+        $pageCacher = Zend_Registry::get('page_cacher');
+        if ($pageCacher) {
             $pageCacher->cleanCache();
         }
 

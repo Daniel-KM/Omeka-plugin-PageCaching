@@ -75,7 +75,7 @@ define('PAGE_CACHING_CACHE_DIR_PATH', PAGE_CACHING_PLUGIN_DIR . 'cache' . DIRECT
      */
     public function hookConfigForm($args)
     {
-        $view = $args['view'];
+        $view = get_view();
         $pageCacher = page_caching_get_page_cacher();
         $form = $pageCacher->buildConfigForm();
         echo $form->render();
@@ -96,11 +96,13 @@ define('PAGE_CACHING_CACHE_DIR_PATH', PAGE_CACHING_PLUGIN_DIR . 'cache' . DIRECT
         $pageCacher->saveOptions();
 
         $pageCacher = page_caching_get_page_cacher(true, true);
-        if ($pageCache = $pageCacher->getCache()) {
+        $pageCache = $pageCacher->getCache();
+        if ($pageCache) {
             $pageCacher->cleanCache();
         } else {
-            if ($errorExceptions = $pageCacher->getErrorExceptions()) {
-               throw $errorExceptions[0];
+            $errorExceptions = $pageCacher->getErrorExceptions();
+            if ($errorExceptions) {
+                throw $errorExceptions[0];
             }
         }
     }

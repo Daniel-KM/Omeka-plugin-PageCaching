@@ -139,7 +139,7 @@ class PageCaching_PageCacher
 
     public function memcacheFailureCallback($hostname, $port)
     {
-        throw Exception('Memcache Failure on host:' . $hostname . ' on port ' . $port);
+        throw new Exception('Memcache Failure on host:' . $hostname . ' on port ' . $port);
     }
 
     protected function _getCacheBackendConfiguration()
