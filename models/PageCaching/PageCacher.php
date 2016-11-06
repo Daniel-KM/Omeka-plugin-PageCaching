@@ -26,7 +26,10 @@ class PageCaching_PageCacher
         // clear the plugins blacklist if the cache directory is empty
         if ($this->cacheDirectoryIsEmpty()) {
             $this->_options['plugins_blacklist'] = array();
-            $this->saveOptions();
+            // This save is removed, because it can create mysql issues:
+            // "Deadlock found when trying to get lock; try restarting transaction"
+            // Anyway, there is no need to save them, because they are dynamic.
+            //$this->saveOptions();
         }
     }
 
